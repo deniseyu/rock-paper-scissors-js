@@ -19,14 +19,13 @@ describe('Game', function(){
 
   });
 
-  describe('winning option',function(){
+  describe('winning and losing options',function(){
 
     beforeEach(function(){
       charmander = new Charmander;
       bulbasaur = new Bulbasaur;
       squirtle = new Squirtle;
       game = new Game;
-
     });
 
     it('charmander beats bulbasaur',function(){
@@ -41,8 +40,6 @@ describe('Game', function(){
       expect(game.winner(bulbasaur, squirtle)).toEqual('bulbasaur');
     });
 
-
-
     it('bulbasaur is beaten by charmander', function(){
       expect(game.winner(bulbasaur, charmander)).toEqual('charmander');
     });
@@ -55,9 +52,21 @@ describe('Game', function(){
       expect(game.winner(squirtle, bulbasaur)).toEqual('bulbasaur');
     });
 
- });
+  });
  
+  describe('when playing the game', function(){
 
+    it('should have two players', function(){
+      playerOne = new Player;
+      playerTwo = new Player;
+      game = new Game;
+      game.addPlayer(playerOne);
+      game.addPlayer(playerTwo);
+      expect(game.players).toEqual[playerOne, playerTwo];
+    });
+
+
+  });
 
 
 

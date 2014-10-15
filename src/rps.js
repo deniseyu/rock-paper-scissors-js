@@ -10,7 +10,9 @@ function Bulbasaur(){
   this.type = 'grass';
 };
 
-function Game(){};
+function Game(){
+  this.players = [];
+};
 
 Game.prototype.winner = function(optionOne, optionTwo) {
   if ((optionOne.type === 'fire' && optionTwo.type === 'grass') || 
@@ -23,3 +25,9 @@ Game.prototype.winner = function(optionOne, optionTwo) {
     (optionTwo.type === 'grass' && optionOne.type === 'water'))
     return 'bulbasaur';
 };
+
+Game.prototype.addPlayer = function(player) {
+  this.players.push(player);
+};
+
+function Player(){};
