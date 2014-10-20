@@ -29,13 +29,23 @@ Game.prototype.winningChoice = function(optionOne, optionTwo) {
     return optionOne;
 };
 
+Game.prototype.winningString = function(optionOne, optionTwo) {
+  if (optionOne === optionTwo)
+    return 'draw';
+  if ((optionOne === 'bulbasaur' && optionTwo === 'charmander') || 
+    (optionOne === 'charmander' && optionTwo === 'squirtle') || 
+    (optionOne === 'squirtle' && optionTwo === 'bulbasaur'))
+    return optionTwo + ' wins!';
+  else
+    return optionOne + ' wins!';
+};
+
 Game.prototype.addPlayer = function(player) {
   this.players.push(player);
   return this.players;
 };
 
 Game.prototype.assess_winner = function(playerOne, playerTwo) {
-  // draw = new Draw;
   if (this.winningChoice(playerOne.option, playerTwo.option) instanceof Draw)
     return 'Its a draw';
   if (this.winningChoice(playerOne.option, playerTwo.option) === playerOne.option)
@@ -44,15 +54,22 @@ Game.prototype.assess_winner = function(playerOne, playerTwo) {
     return 'Player Two wins!';
 };
 
-function Player(name){
+function Player(my_name){
   this.type = 'player';
-  if (name === undefined) {
-    this.name = "Denise"
-  };
+  if (my_name === undefined) {
+    this.name = "Player" }
+  else {
+    this.name = my_name;
+    };
 };
 
 Player.prototype.chooses = function(pokemon) {
   this.option = pokemon;
+};
+
+Player.prototype.randomly_chooses = function() {
+  var choices = ['squirtle', 'bulbasaur', 'charmander'];
+  this.option = choices[Math.round(Math.random() * (choices.length - 1))];
 };
 
 

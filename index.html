@@ -5,30 +5,50 @@
 
 <link rel="stylesheet" type="text/css" href="lib/stylesheets/stylesheet.css">
 
-<header class='banner'>Welcome to the world of Pokemon!!!!!</header>
+<header class='banner'>Welcome to the world of Pokemon!!</header>
+
 
 </head>
 
 <body>
 
 <section class='pokemon'>
-<img src='lib/images/bulbasaur.jpeg' id='bulbasaur'>
-<img src='lib/images/charmander.jpeg' id='charmander'>
-<img src='lib/images/squirtle.jpeg' id='squirtle'>
+    <img src='lib/images/bulbasaur.jpeg' class="choice" id='bulbasaur' data-pick="bulbasaur" data-pick='bulbasaur'>
+    <img src='lib/images/charmander.jpeg' class="choice" id='charmander' data-pick="charmander" data-pick='charmander'>
+    <img src='lib/images/squirtle.jpeg' class="choice" id='squirtle' data-pick="squirtle" data-pick=squirtle>
 </section>
 
-<script type="text/javascript" src="src/rps.js">
+<p class='game_steps'>Ready for Player 1's move!</p>
+<p class='turn' id='player_one_choice'>Player 1 choice</p>
+<p class='turn' id='player_two_choice'>Player 2 choice</p>
 
-
-
-</body>
-
+<script type="text/javascript" src="src/rps.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 <script>
+  $(document).ready(function(){
+      var game = new Game;
+      var Alex = new Player('Alex');
+      var Mihai = new Player('Mihai');
+      var bulbasaur = new Bulbasaur;
+      var charmander = new Charmander;
+      var squirtle = new Squirtle;
+      game.addPlayer(Alex);
+      game.addPlayer(Mihai);
 
+    $('img.choice').on('click', function(){
+      $(this).data('pick')
+      Alex.chooses($(this).data('pick'))
+      Mihai.randomly_chooses()
 
+      $('p.game_steps').text('Outcome: ' + (game.winningString(Alex.option, Mihai.option)));
+      $('#player_one_choice').text('You chose ' + (Alex.option))
+      $('#player_two_choice').text('Computer chose ' + (Mihai.option))
+    });
+  });
 
 </script>
+</body>
 
 
 </html>

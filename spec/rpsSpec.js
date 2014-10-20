@@ -9,7 +9,6 @@ describe('Game', function(){
   
   describe('winning and losing options',function(){
 
-
     beforeEach(function(){
       charmander = new Charmander;
       bulbasaur = new Bulbasaur;
